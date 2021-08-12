@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: certs-magic
+    env: prod
+  name: certs-magic-clusterip
+  namespace: certs-magic
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: certs-magic
+    env: prod

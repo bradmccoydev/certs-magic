@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: certs-magic-ingress-wildcard-host
+  namespace: certs-magic
+spec:
+  rules:
+  - host: "foo.localhost"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: certs-magic-clusterip
+            port:
+              number: 80
+  - host: "*.localhost"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: certs-magic-clusterip
+            port:
+              number: 80

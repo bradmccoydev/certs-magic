@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: certs-magic
+    env: prod
+  name: certs-magic
+  namespace: certs-magic
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: certs-magic
+      env: prod
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: certs-magic
+        env: prod
+    spec:
+      containers:
+      - image: bradmccoydev/certs-magic:latest
+        name: certs-magic
+        resources: {}
+status: {}

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: null
+  labels:
+    app: certsmagic
+    env: prod
+  name: certs-magic
+  namespace: certs-magic
+spec:
+  containers:
+  - image: bradmccoydev/certs-magic:latest
+    name: certs-magic
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}

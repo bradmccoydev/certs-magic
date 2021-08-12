@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: certs-magic-ingress-externaldns
+  namespace: certs-magic
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-production-aws
+spec:
+  tls:
+  - hosts:
+      - "cncfstudents.bradmccoy.io"
+    secretName: letsencrypt-prod-certs-magic
+  rules:
+  - host: "cncfstudents.bradmccoy.io"
+    http:
+      paths: 
+      - backend:
+          service:
+            name: certs-magic-clusterip
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
